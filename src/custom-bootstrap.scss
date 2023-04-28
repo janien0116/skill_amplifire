@@ -1,0 +1,42 @@
+$theme-colors: (
+    "primary": #025AA5,
+    "secondary": #814191,
+    "info": rgba(108, 180, 238, 1),
+    "light": #babcd6,
+    "success": #4EDE59,
+    "danger": #d45463,
+    "warning": #B82F55,
+    "color1": #0282F2,
+    "color2": #387AB5,
+    "color3": #4BA4F2,
+    "color4": #C564DE,
+    "color5": #9B7BA4,
+    "color6": #D3A6DE,
+    "color7": #C36D86,
+    "dark": #191838,
+    "green": #3A9141,
+    "yellow": #F2CB1B,
+    "transparent": transparent
+);
+$accordion-bg: transparent;
+$accordion-button-active-bg: transparent;
+$accordion-button-active-color: white;
+$carousel-indicator-width: 15px;
+$carousel-indicator-height: 15px;
+$carousel-indicator-spacer: 5px;
+$modal-content-bg: #babcd6;
+
+@import "~bootstrap/scss/bootstrap";
+
+.accordion-button {
+    font-size: 1.3rem;
+}
+
+.carousel-indicators [data-bs-target] {
+    border: 1px solid #0282F2;
+    border-radius: 100%;
+}
+
+.modal-body {
+    padding: 0;
+  }

@@ -1,0 +1,122 @@
+[
+  {
+    "value": "Front End Web Development",
+    "label": "Front End Web Development",
+    "categories": [
+      { "value": "HTML and CSS", "label": "HTML and CSS" },
+	  { "value": "JavaScript", "label": "JavaScript" },
+      { "value": "Frameworks", "label": "Frameworks" },
+      { "value": "Web Design", "label": "Web Design" }
+    ]
+  },
+  {
+    "value": "Back End Web Development",
+    "label": "Back End Web Development",
+    "categories": [
+      { "value": "Databases", "label": "Databases" },
+      { "value": "APIs", "label": "APIs" },
+      { "value": "Server Management", "label": "Server Management" },
+	  { "value": "Security", "label": "Security" }
+    ]
+  },
+  {
+    "value": "Data Analytics",
+    "label": "Data Analytics",
+    "categories": [
+      { "value": "Statistics", "label": "Statistics" },
+	  { "value": "Programming", "label": "Programming" },
+      { "value": "Data Visualization", "label": "Data Visualization" },
+      { "value": "Machine Learning", "label": "Machine Learning" }
+    ]
+  },
+  {
+    "value": "Social Media Marketing",
+    "label": "Social Media Marketing",
+    "categories": [
+      { "value": "Content Creation", "label": "Content Creation" },
+      { "value": "Campaigns", "label": "Campaigns" },
+	  { "value": "Advertising", "label": "Advertising" },
+      { "value": "Analytics", "label": "Analytics" }
+    ]
+  },
+  {
+    "value": "Graphic Design in General",
+    "label": "Graphic Design in General",
+    "categories": [
+      { "value": "Typography", "label": "Typography" },
+      { "value": "Branding", "label": "Branding" },
+      { "value": "Illustration", "label": "Illustration" },
+      { "value": "Layout", "label": "Layout" }
+    ]
+  },
+  {
+    "value": "Mobile Game Development",
+    "label": "Mobile Game Development",
+    "categories": [
+      { "value": "Game Design", "label": "Game Design" },
+      { "value": "Java Programming", "label": "Java Programming" },
+      { "value": "Graphics", "label": "Graphics" },
+      { "value": "Audio", "label": "Audio" }
+    ]
+  },
+  {
+    "value": "Bookkeeping",
+    "label": "Bookkeeping",
+    "categories": [
+      { "value": "Accounting Principles", "label": "Accounting Principles" },
+      { "value": "Taxation", "label": "Taxation" },
+      { "value": "Financial Analysis", "label": "Financial Analysis" },
+      { "value": "Bookkeeping Software", "label": "Bookkeeping Software" }
+    ]
+  },
+  {
+    "value": "Content Creation",
+    "label": "Content Creation",
+    "categories": [
+      { "value": "Writing", "label": "Writing" },
+      { "value": "Video", "label": "Video" },
+      { "value": "Photography", "label": "Photography" },
+      { "value": "Podcasting", "label": "Podcasting" }
+    ]
+  },
+  {
+    "value": "UI/UX Web Design",
+    "label": "UI/UX Web Design",
+    "categories": [
+      { "value": "Design Principles", "label": "Design Principles" },
+      { "value": "Wireframing", "label": "Wireframing" },
+      { "value": "Prototyping", "label": "Prototyping" },
+      { "value": "User Research", "label": "User Research" }
+    ]
+  },
+  {
+    "value": "Machine Learning",
+    "label": "Machine Learning",
+    "categories": [
+      { "value": "Neural Networks", "label": "Neural Networks" },
+      { "value": "Deep Learning", "label": "Deep Learning" },
+      { "value": "Natural Language Processing", "label": "Natural Language Processing" },
+      { "value": "Computer Vision", "label": "Computer Vision" }
+    ]
+  },
+  {
+    "value": "Relational Database",
+    "label": "Relational Database",
+    "categories": [
+      { "value": "SQL", "label": "SQL" },
+      { "value": "Data Modeling", "label": "Data Modeling" },
+      { "value": "Database Design", "label": "Database Design" },
+      { "value": "Data Warehousing", "label": "Data Warehousing" }
+    ]
+  },
+  {
+    "value": "Responsive Web Design",
+    "label": "Responsive Web Design",
+    "categories": [
+      { "value": "Responsive Principles", "label": "Responsive Principles" },
+      { "value": "Media Queries", "label": "Media Queries" },
+      { "value": "Mobile First", "label": "Mobile First" },
+      { "value": "Performance Optimization", "label": "Performance Optimization" }
+    ]
+  }
+ ]

@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Martel&display=swap');
+
+body {
+  background: rgb(255,255,255);
+  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(108,180,238,1) 100%);
+  font-family: 'Open Sans', serif;
+  overflow-x: hidden;
+}
+
+#app-body {
+  min-height: 100vh;
+}
+
+.page {
+  min-height: 100vh;
+}
+
+#footer {
+  background-color: #fff;
+  font-family: 'Martel', serif;
+}
+
+.fs-2, .display-5, .display-6, .fs-4{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+}
+
+.navbar-font {
+  font-weight: bold;
+  font-size: larger;
+  color: #387AB5;
+}
+
+.icon-container {
+  position:absolute;
+  border-radius: 100%;
+  background-color: #D3A6DE;
+  padding: 15px 20px;
+  left: -10px;
+  z-index: 1;
+}
+
+.bi-fire {
+  color: #B82F55;
+  font-size: 1.5em;
+}
+
+.curriculum {
+  width: 95%;
+}
+
+.bi-search {
+  font-size: 1.5em;
+}
+
+.caption {
+  background-color: rgba(2,90,165,0.5);
+  border-radius: 15px;
+  top: 30%;
+  height: max-content;
+}
+
+.course-card {
+  min-height: 450px;
+  max-width: 400px;
+}
+
+.instructor-course-card {
+  min-height: 350px;
+  max-width: 280px;
+}
+
+.custom-course-card {
+  min-height: 400px;
+  max-width: 400px;
+}
+
+.modal-50w {
+  max-width: none!important;
+  width: 50%;
+}
+.modal-60w {
+  max-width: none!important;
+  width: 60%;
+}
+
+.modal-body {
+  background: rgb(255,255,255);
+  background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(108,180,238,1) 100%);
+  height: 80vh;
+}
+
+#rating-modal {
+  height: 200px;
+}
+
+#rating-modal form {
+  background-color: #fff;
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-rating {
+  font-size: 30px;
+}
+.btn-rating:hover {
+  background-color: transparent;
+  border: none;
+}
+
+#login-message {
+  text-align: center;
+  background-image: url(./assets/images/modal-bg.png);
+  background-position: center;
+  background-size: cover;
+  height: 80vh;
+}
+
+#login-form, #signup-form {
+  padding-top: 10%;
+}
+
+#signup-message {
+  text-align: center;
+  background-image: url(./assets/images/modal-bg.png);
+  background-position: center;
+  background-size: cover;
+  height: 80vh;
+}
+
+#signup-modal {
+  height: max-content
+}
+
+#dialog {
+  height: max-content;
+  padding: 60px 20px;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+#dialog-header, #dialog-footer {
+  height: 10px !important;
+}
+
+#modal-handler {
+  z-index: 999 !important;
+}
+
+#instructor-dashboard {
+  min-height: 100vh;
+}
+
+.instructor-sidetab {
+  background-color: rgba(240, 198, 240, 0.6);
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  min-height: 100vh;
+}
+
+#instructor-class {
+  min-height: 100vh;
+}
+
+#student-portal {
+  min-height: 100vh;
+}
+
+.video-lesson {
+  background-color: rgba(240, 198, 240, 0.6);
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border: 2px dashed black;
+  border-radius: 10px;
+}
+
+.course-img {
+  max-height: 250px;
+}
+.instructor-course-img {
+  max-height: 150px;
+}
