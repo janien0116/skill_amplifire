@@ -21,7 +21,6 @@ const Curriculum = () => {
             </Container>
             <Curriculums />
                 <Container className="d-flex flex-column align-items-center text-center my-5">
-                    <Button style={{ display: isLoading ? 'none' : showCoursePlan ? 'block' : 'none' }} variant='success' className="px-5 rounded-pill fs-4" onClick={handleEnrollClick}>Enroll Course Plan</Button>
                     <p className="fs-2 mt-5">Prefer to customize your learning experience?</p>
                     <p className="fs-5">Build your own curriculum by selecting individual courses that suit your needs. Click the button below to start browsing our course catalog and find the perfect fit for you.</p>
                     <Link to={"/courses"} onClick={handleClick}><Button className="btn btn-primary px-5 rounded-pill fs-5 my-3">Browse Courses</Button></Link>

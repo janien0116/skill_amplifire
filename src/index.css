@@ -67,6 +67,11 @@ body {
   max-width: 400px;
 }
 
+.home-course-card {
+  min-height: 400px;
+  max-width: 400px;
+}
+
 .instructor-course-card {
   min-height: 350px;
   max-width: 280px;
@@ -185,4 +190,8 @@ body {
 }
 .instructor-course-img {
   max-height: 150px;
+}
+
+.spinner {
+  height: 100vh;
 }

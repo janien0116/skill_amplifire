@@ -161,7 +161,6 @@ const Courses = () => {
                                                         <Placeholder xs={7} /> <Placeholder xs={4} /> <Placeholder xs={4} />{' '}
                                                         <Placeholder xs={6} /> <Placeholder xs={8} />
                                                     </Placeholder>
-                                                    <Placeholder.Button variant="primary" xs={6} />
                                                 </Card.Body>
                                             </Card>
                                         </Col>
@@ -179,7 +178,7 @@ const Courses = () => {
                                 }
                                 rows[totalRows].push(
                                     <Col key={index}>
-                                        <Card className='course-card'>
+                                        <Card className='home-course-card'>
                                             <Card.Img variant="top" fluid src={course.videoThumbnail ? `http://localhost:5000/${course.videoThumbnail}` : courseThumbnail} alt='Video Thumbnail' className='course-img' />
                                             <Card.Body className='d-flex flex-column justify-content-end'>
                                                 <Card.Title className="course-title">{course.title}</Card.Title>
@@ -196,9 +195,6 @@ const Courses = () => {
                                                     </div>
                                                     <p><i class="card-icon bi bi-cash-stack me-2"></i>$ {course.amount}</p>
                                                 </Card.Text>
-                                                <div className="d-flex justify-content-between">
-                                                    <Button variant="primary" onClick={handleEnrollClick}>Add to Course Plan</Button>
-                                                </div>
                                             </Card.Body>
                                         </Card>
                                     </Col>

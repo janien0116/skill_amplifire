@@ -49,7 +49,7 @@ const StudentNavbar = () => {
         <div>
             <Navbar bg="light" expand="lg" className='py-0'>
                 <Container>
-                    <Navbar.Brand><Link to={"/"}><img src={logo} alt="Logo" width="200" /></Link></Navbar.Brand>
+                    <Navbar.Brand><img src={logo} alt="Logo" width="200" /></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto mb-2 mb-lg-0">

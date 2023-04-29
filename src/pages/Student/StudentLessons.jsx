@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Button, Col, Container, Row, Tab, Form, Modal, Stack, ButtonGroup, Nav, ProgressBar, Image } from 'react-bootstrap'
+import { Button, Col, Container, Row, Tab, Form, Modal, Stack, ButtonGroup, Nav, ProgressBar, Image, Spinner } from 'react-bootstrap'
 import {
     frontEnd,
     backEnd,
@@ -19,7 +19,7 @@ import { useParams } from 'react-router-dom'
 import ErrorHandlingModalContext from '../../contexts/ErrorHandlingModalContext';
 
 const StudentLessons = () => {
-    const {showErrorHandlingMessage} = useContext(ErrorHandlingModalContext);
+    const { showErrorHandlingMessage } = useContext(ErrorHandlingModalContext);
 
     const { studentId } = useParams();
 
@@ -35,6 +35,7 @@ const StudentLessons = () => {
     const [instructorName, setInstructorName] = useState("");
     const [now, setNow] = useState(0);
     const [activeKey, setActiveKey] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         const fetchCoursePlan = () => {
@@ -46,6 +47,7 @@ const StudentLessons = () => {
                 },
                 _id: studentId
             };
+            setIsLoading(true);
             axios.get(url, requestOptions)
                 .then(response => {
                     const data = response.data;
@@ -64,6 +66,7 @@ const StudentLessons = () => {
                     setCategories(categories);
                     const allCourses = categories.reduce((acc, curr) => acc.concat(curr.courses), []);
                     setCourses(allCourses);
+                    setIsLoading(false);
                     if (response.data.curriculum === "Front End Web Development") {
                         setCurriculumImage(frontEnd)
                     } else if (response.data.curriculum === "Back End Web Development") {
@@ -94,7 +97,7 @@ const StudentLessons = () => {
         }
         fetchCoursePlan();
         fetchStudentProgress();
-    }, []); 
+    }, []);
 
     const fetchStudentProgress = () => {
         let url = `http://127.0.0.1:5000/api/students/${studentId}/progress`;
@@ -136,7 +139,10 @@ const StudentLessons = () => {
 
         axios.put(url, formData, config)
             .then((response) => showErrorHandlingMessage(response.data.msg))
-            .then(() => setShowRatingModal(true))
+            .then(() => {
+                setShowRatingModal(true);
+                fetchStudentProgress();
+            })
             .catch((error) => showErrorHandlingMessage(error.response.data.msg));
     }
 
@@ -162,7 +168,6 @@ const StudentLessons = () => {
         };
         axios.post(url, data, config)
             .then(() => {
-                fetchStudentProgress();
                 handleClick();
                 handleCloseRating();
                 setRating(0);
@@ -177,81 +182,89 @@ const StudentLessons = () => {
         if (nextIndex < courses.length) {
             const nextCourse = courses[nextIndex];
             setActiveKey(nextCourse.id);
-        } else {
-            setActiveKey("last");
         }
     };
     return (
         <div className='page'>
-            <Tab.Container activeKey={activeKey} onSelect={(key) => setActiveKey(key)}>
-                <Row>
-                    <Col sm={3} className='pe-0 bg-light'>
-                        <Nav variant="pills" className="flex-column pb-3" id="student-sidebar">
-                            <div>
-                                {curriculumImage && (
-                                    <Image src={curriculumImage} fluid alt='Curriculum' />
-                                )}
-                            </div>
-                            <p className='fs-4 text-center my-2 px-2 text-secondary'>{coursePlan.curriculum}</p>
-                            <ProgressBar variant="success" animated now={now} label={`${now}%`} className='mt-2' />
-                            {categories.map(category => (
-                                <div key={category.id}>
-                                    <p className='fs-4 my-4 ps-2'>{category.category}</p>
-                                    {category.courses.map(course => (
-                                        <Nav.Item key={course.id} onClick={() => {
-                                            setInstructorName(course.instructorName);
-                                            setCourseId(course.id);
-                                            handleClick();
-                                        }}>
-                                            <Nav.Link eventKey={course.id} className='fs-5'>{course.title}</Nav.Link>
-                                        </Nav.Item>
-                                    ))}
+            {isLoading ? (
+                <Container className='d-flex justify-content-center align-items-center spinner'>
+                    <Spinner animation="grow" variant="primary" />
+                    <Spinner animation="grow" variant="secondary" />
+                    <Spinner animation="grow" variant="success" />
+                    <Spinner animation="grow" variant="danger" />
+                </Container>
+            ) : (
+                <Tab.Container activeKey={activeKey} onSelect={(key) => setActiveKey(key)}>
+                    <Row>
+                        <Col sm={3} className='pe-0 bg-light'>
+                            <Nav variant="pills" className="flex-column pb-3" id="student-sidebar">
+                                <div>
+                                    {curriculumImage && (
+                                        <Image src={curriculumImage} fluid alt='Curriculum' />
+                                    )}
                                 </div>
-                            ))}
-                            <Nav.Item>
-                                <Nav.Link variant='success' eventKey="last" className='fs-5'>Complete Course Plan</Nav.Link>
-                            </Nav.Item>
-                        </Nav>
-                    </Col>
-                    <Col sm={9} className='bg-dark'>
-                        <Tab.Content>
-                            {categories.map(category => (
-                                <>
-                                    {category.courses.map(course => (
-                                        <Tab.Pane key={course.id} eventKey={course.id} className='pt-2 pe-2 text-center text-white'>
-                                            <Image src={lessonPlaceholder} className='img-fluid mb-5' alt='Lesson' />
-                                            <Stack direction='horizontal' gap={5} className='px-2 mb-5'>
-                                                <p className='fs-4'>{course.title}</p>
-                                                <p className='fs-4 ms-auto'>Instructor: {course.instructorName}</p>
-                                            </Stack>
-                                            <p className='fs-4'>Course Assessment</p>
-                                            <p className='fs-5 mb-5'>Answer questions provided by the instructor below to continue your course plan</p>
-                                            <Container className='mb-5'>
-                                                <p className='fs-5'>{course.outputDescription}</p>
-                                                <p><a href={course.outputLink}>{course.outputLink}</a></p>
-                                            </Container>
-                                            <p className='fs-5 mb-3'>Upload Output</p>
-                                            <Form onSubmit={handleShowRatingModal}>
-                                                <Stack direction='horizontal' gap={3} className='px-4 mb-5'>
-                                                    <Form.Control type="file" size='lg' accept=".pdf,.txt,.docx" className='w-75' onChange={handleFileChange} required />
-                                                    <Button type='submit' variant='success' className='fs-5'>Complete and Continue</Button>
+                                <p className='fs-4 text-center my-2 px-2 text-secondary'>{coursePlan.curriculum}</p>
+                                <ProgressBar variant="success" animated now={now} label={`${now}%`} className='mt-2' />
+                                {categories.map(category => (
+                                    <div key={category.id}>
+                                        <p className='fs-4 my-4 ps-2'>{category.category}</p>
+                                        {category.courses.map(course => (
+                                            <Nav.Item key={course.id} onClick={() => {
+                                                setInstructorName(course.instructorName);
+                                                setCourseId(course.id);
+                                                handleClick();
+                                            }}>
+                                                <Nav.Link eventKey={course.id} className='fs-5'>{course.title}</Nav.Link>
+                                            </Nav.Item>
+                                        ))}
+                                    </div>
+                                ))}
+                                <Nav.Item>
+                                    <Nav.Link variant='success' eventKey="last" className='fs-5'>Complete Course Plan</Nav.Link>
+                                </Nav.Item>
+                            </Nav>
+                        </Col>
+                        <Col sm={9} className='bg-dark'>
+                            <Tab.Content>
+                                {categories.map(category => (
+                                    <>
+                                        {category.courses.map(course => (
+                                            <Tab.Pane key={course.id} eventKey={course.id} className='pt-2 pe-2 text-center text-white'>
+                                                <Image src={lessonPlaceholder} className='img-fluid mb-5' alt='Lesson' />
+                                                <Stack direction='horizontal' gap={5} className='px-2 mb-5'>
+                                                    <p className='fs-4'>{course.title}</p>
+                                                    <p className='fs-4 ms-auto'>Instructor: {course.instructorName}</p>
                                                 </Stack>
-                                            </Form>
-                                        </Tab.Pane>
-                                    ))}
-                                </>
-                            ))}
-                            <Tab.Pane id="last-lesson-tabpane" eventKey="last">
-                                <Container className='text-center'>
-                                    <p class="display-6 my-5 text-center text-white">Congratulations on finishing this Course Plan!</p>
-                                    <p class="display-6 my-5 text-center text-white">You can now download your Certificate.</p>
-                                    <Button variant='success' className='fs-5 px-5'>Download Certificate</Button>
-                                </Container>
-                            </Tab.Pane>
-                        </Tab.Content>
-                    </Col>
-                </Row>
-            </Tab.Container>
+                                                <p className='fs-4'>Course Assessment</p>
+                                                <p className='fs-5 mb-5'>Answer questions provided by the instructor below to continue your course plan</p>
+                                                <Container className='mb-5'>
+                                                    <p className='fs-5'>{course.outputDescription}</p>
+                                                    <p><a href={course.outputLink}>{course.outputLink}</a></p>
+                                                </Container>
+                                                <p className='fs-5 mb-3'>Upload Output</p>
+                                                <Form onSubmit={handleShowRatingModal}>
+                                                    <Stack direction='horizontal' gap={3} className='px-4 mb-5'>
+                                                        <Form.Control type="file" size='lg' accept=".pdf,.txt,.docx" className='w-75' onChange={handleFileChange} required />
+                                                        <Button type='submit' variant='success' className='fs-5'>Complete and Continue</Button>
+                                                    </Stack>
+                                                </Form>
+                                            </Tab.Pane>
+                                        ))}
+                                    </>
+                                ))}
+                                <Tab.Pane id="last-lesson-tabpane" eventKey="last">
+                                    <Container className='text-center'>
+                                        <p class="display-6 my-5 text-center text-white">Congratulations on finishing this Course Plan!</p>
+                                        <p class="display-6 my-5 text-center text-white">You can now download your Certificate.</p>
+                                        <Button variant='success' className='fs-5 px-5'>Download Certificate</Button>
+                                    </Container>
+                                </Tab.Pane>
+                            </Tab.Content>
+                        </Col>
+                    </Row>
+                </Tab.Container>
+            )}
+
             <Modal show={showRatingModal} onHide={handleCloseRating}>
                 <Modal.Header closeButton>
                     <Modal.Title>Rate this course</Modal.Title>
@@ -271,7 +284,7 @@ const StudentLessons = () => {
                     </Form>
                 </Modal.Body>
             </Modal>
-        </div>
+        </div >
     )
 }
 

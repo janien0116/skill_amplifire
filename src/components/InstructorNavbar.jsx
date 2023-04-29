@@ -50,7 +50,7 @@ const InstructorNavbar = () => {
         <div>
             <nav className="navbar navbar-expand-lg bg-light py-0">
                 <Container>
-                    <Link to={"/"} class="navbar-brand"><img src={logo} alt="Logo" width="200" /></Link>
+                    <Navbar.Brand className="navbar-brand"><img src={logo} alt="Logo" width="200" /></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto mb-2 mb-lg-0">

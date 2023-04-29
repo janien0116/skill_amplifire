@@ -3,7 +3,7 @@ import heroImage from '../assets/images/hero-image.png';
 import teacherOne from '../assets/images/alex.jpg';
 import teacherThree from '../assets/images/mosh.jpg';
 import teacherFour from '../assets/images/kenjee.jpg';
-import { Accordion, Button, Card, Col, Container, Figure, ListGroup, Row, Stack } from 'react-bootstrap';
+import { Accordion, Button, Card, Col, Container, Figure, ListGroup, Row, Stack, Image } from 'react-bootstrap';
 import { courseThumbnail, logoSymbol } from '../assets';
 import SignUpModalContext from '../contexts/SignUpModalContext';
 import CurriculumCarousel from '../components/CurriculumCarousel';
@@ -89,7 +89,7 @@ const Home = () => {
                                 </Stack>
                             </ListGroup>
                             <Col lg={4} className='d-flex align-items-center'>
-                                <img src={logoSymbol} width={420} alt="Benefits Section" className='rounded-3 ms-4' />
+                                <Image src={logoSymbol} fluid width={420} alt="Benefits Section" className='rounded-3 ms-4' />
                             </Col>
                         </div>
                         <div className="mt-5 d-flex flex-column align-items-center" id="curriculum-section">

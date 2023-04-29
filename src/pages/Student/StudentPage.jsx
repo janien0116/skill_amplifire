@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Button, Card, Container, ProgressBar, Stack, Placeholder } from 'react-bootstrap'
+import { Button, Card, Container, ProgressBar, Stack, Placeholder, Spinner } from 'react-bootstrap'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import {
     frontEnd,
@@ -30,12 +30,19 @@ const StudentPage = () => {
     const [storedToken, setStoredToken] = useState(localStorage.getItem('token'));
     const [coursePlan, setCoursePlan] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [isCurriculumLoading, setIsCurriculumLoading] = useState(false);
     const [isEnrolled, setIsEnrolled] = useState(true);
     const [curriculumImage, setCurriculumImage] = useState(null);
     const [now, setNow] = useState(0);
     const [showConfirmationDialog, setShowConfirmationDialog] = useState(false);
 
     useEffect(() => {
+        setIsLoading(true);
+        fetchCoursePlan();
+        fetchStudentProgress();
+    }, []);
+
+    const fetchCoursePlan = () => {
         let url = `http://127.0.0.1:5000/api/students/${studentId}/courseplan`;
 
         const config = {
@@ -43,12 +50,10 @@ const StudentPage = () => {
                 Authorization: `Bearer ${storedToken}`,
             }
         };
-        setIsLoading(true);
-
         axios.get(url, config)
             .then((response) => {
                 setCoursePlan(response.data);
-                setIsLoading(false)
+                setIsLoading(false);
                 setIsEnrolled(true);
                 if (response.data.curriculum === "Front End Web Development") {
                     setCurriculumImage(frontEnd)
@@ -80,33 +85,32 @@ const StudentPage = () => {
                 console.error(error);
                 setIsEnrolled(false);
             });
+    }
 
-        const fetchStudentProgress = () => {
-            let url = `http://127.0.0.1:5000/api/students/${studentId}/progress`;
+    const fetchStudentProgress = () => {
+        let url = `http://127.0.0.1:5000/api/students/${studentId}/progress`;
 
-            const requestOptions = {
-                headers: {
-                    Authorization: `Bearer ${storedToken}`,
-                }
-            };
+        const requestOptions = {
+            headers: {
+                Authorization: `Bearer ${storedToken}`,
+            }
+        };
 
-            axios.get(url, requestOptions)
-                .then((response) => {
-                    const data = response.data;
-                    let courseCount = parseInt(data.noOfCourses);
-                    let progress = parseInt(data.progress);
-                    setNow(Math.ceil((progress / courseCount) * 100));
-                })
-                .catch(error => console.error(error));
-        }
-        fetchStudentProgress();
-    }, []);
-
+        axios.get(url, requestOptions)
+            .then((response) => {
+                const data = response.data;
+                let courseCount = parseInt(data.noOfCourses);
+                let progress = parseInt(data.progress);
+                setNow(Math.ceil((progress / courseCount) * 100));
+            })
+            .catch(error => console.error(error));
+    }
 
     const handleClick = () => window.scrollTo(0, 0);
 
     const handleEnrollCoursePlan = (e) => {
         e.preventDefault();
+        window.scrollTo(0, 0);
         let url = `http://127.0.0.1:5000/api/students/${studentId}`;
 
         const data = {
@@ -123,17 +127,16 @@ const StudentPage = () => {
                 Authorization: `Bearer ${storedToken}`
             }
         };
-
+        setIsCurriculumLoading(true);
         axios.post(url, data, config)
             .then((response) => {
                 const data = response.data
                 showErrorHandlingMessage(data.msg);
+                fetchCoursePlan();
             })
             .then(() => {
-                setTimeout(() => {
-                    window.location.reload();
-                    setIsEnrolled(true);
-                }, 2000);
+                setIsCurriculumLoading(false);
+                setIsEnrolled(true);
             })
             .catch((error) => {
                 showErrorHandlingMessage(error.response.data.msg)
@@ -148,13 +151,14 @@ const StudentPage = () => {
                 Authorization: `Bearer ${storedToken}`,
             },
         };
+        setIsLoading(true)
         axios.delete(url, config)
             .then((response) => {
                 const data = response.data;
                 showErrorHandlingMessage(data.msg);
+                setIsLoading(false);
             })
             .then(() => {
-                window.location.reload();
                 setIsEnrolled(false);
             })
             .catch((error) => showErrorHandlingMessage(error.response.data.msg));
@@ -204,8 +208,17 @@ const StudentPage = () => {
                     </Container>
                 )
                 ) : (
-                    <>
+                    <> {isCurriculumLoading ? (
+                        <Container className='d-flex justify-content-center align-items-center spinner'>
+                            <Spinner animation="grow" variant="primary" />
+                            <Spinner animation="grow" variant="secondary" />
+                            <Spinner animation="grow" variant="success" />
+                            <Spinner animation="grow" variant="danger" />
+                        </Container>
+                    ) : (
                         <Curriculums />
+                    )}
+
                         <Container className='d-flex justify-content-center'>
                             <Button variant='success' className="px-5 rounded-pill fs-4" style={{ display: showCoursePlan ? 'block' : 'none' }} onClick={handleEnrollCoursePlan}>Enroll Course Plan</Button>
                         </Container>
