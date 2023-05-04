@@ -1,8 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import 'react-router-dom';
-import 'react-bootstrap';
-import 'bootstrap-icons/font/bootstrap-icons.css';
 import './custom-bootstrap.scss'
 import './index.css';
 import App from './App';
