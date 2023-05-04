@@ -43,7 +43,7 @@ const StudentPage = () => {
     }, []);
 
     const fetchCoursePlan = () => {
-        let url = `http://127.0.0.1:5000/api/students/${studentId}/courseplan`;
+        let url = `${process.env.REACT_APP_API_URL}/students/${studentId}/courseplan`;
 
         const config = {
             headers: {
@@ -88,7 +88,7 @@ const StudentPage = () => {
     }
 
     const fetchStudentProgress = () => {
-        let url = `http://127.0.0.1:5000/api/students/${studentId}/progress`;
+        let url = `${process.env.REACT_APP_API_URL}/students/${studentId}/progress`;
 
         const requestOptions = {
             headers: {
@@ -111,7 +111,7 @@ const StudentPage = () => {
     const handleEnrollCoursePlan = (e) => {
         e.preventDefault();
         window.scrollTo(0, 0);
-        let url = `http://127.0.0.1:5000/api/students/${studentId}`;
+        let url = `${process.env.REACT_APP_API_URL}/students/${studentId}`;
 
         const data = {
             studentId: studentId,
@@ -144,7 +144,7 @@ const StudentPage = () => {
     };
 
     const handleDeleteCourseplan = () => {
-        let url = `http://127.0.0.1:5000/api/students/${studentId}/courseplan`;
+        let url = `${process.env.REACT_APP_API_URL}/students/${studentId}/courseplan`;
 
         const config = {
             headers: {

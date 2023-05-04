@@ -26,7 +26,7 @@ const Curriculums = () => {
         const controller = new AbortController();
 
         setIsLoading(true);
-        axios.get('http://127.0.0.1:5000/api', { signal: controller.signal },)
+        axios.get(`${process.env.REACT_APP_API_URL}`, { signal: controller.signal },)
             .then(response => {
                 const sortedCourses = response.data.sort((a, b) => b.averageRating - a.averageRating);
                 setCourses(sortedCourses);

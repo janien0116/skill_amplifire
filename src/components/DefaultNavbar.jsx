@@ -54,7 +54,7 @@ const DefaultNavbar = () => {
       e.preventDefault();
       e.stopPropagation();
     }
-    const url = "http://127.0.0.1:5000/api/student-login";
+    const url = `${process.env.REACT_APP_API_URL}/student-login`;
 
     const requestBody = {
       email: email,
@@ -87,7 +87,7 @@ const DefaultNavbar = () => {
 
   const handleTeacherLogin = async (e) => {
     e.preventDefault();
-    const url = "http://127.0.0.1:5000/api/instructor-login";
+    const url = `${process.env.REACT_APP_API_URL}/instructor-login`;
 
     const requestBody = {
       email: teacherEmail,

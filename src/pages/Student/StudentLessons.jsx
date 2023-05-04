@@ -39,7 +39,7 @@ const StudentLessons = () => {
 
     useEffect(() => {
         const fetchCoursePlan = () => {
-            let url = `http://127.0.0.1:5000/api/students/${studentId}/courseplan`;
+            let url = `${process.env.REACT_APP_API_URL}/students/${studentId}/courseplan`;
 
             const requestOptions = {
                 headers: {
@@ -100,7 +100,7 @@ const StudentLessons = () => {
     }, []);
 
     const fetchStudentProgress = () => {
-        let url = `http://127.0.0.1:5000/api/students/${studentId}/progress`;
+        let url = `${process.env.REACT_APP_API_URL}/students/${studentId}/progress`;
 
         const requestOptions = {
             headers: {
@@ -124,7 +124,7 @@ const StudentLessons = () => {
 
     const handleShowRatingModal = (e) => {
         e.preventDefault();
-        let url = `http://127.0.0.1:5000/api/students/${studentId}/project`;
+        let url = `${process.env.REACT_APP_API_URL}/students/${studentId}/project`;
 
         const config = {
             headers: {
@@ -154,7 +154,7 @@ const StudentLessons = () => {
 
     const handleSubmitRating = (e) => {
         e.preventDefault();
-        let url = `http://127.0.0.1:5000/api/students/${studentId}/rate`;
+        let url = `${process.env.REACT_APP_API_URL}/students/${studentId}/rate`;
 
         const config = {
             headers: {

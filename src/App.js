@@ -25,7 +25,6 @@ import InstructorNavbar from "./components/InstructorNavbar";
 import ErrorHandlingModalContext, {
   ErrorHandlingModalContextProvider,
 } from "./contexts/ErrorHandlingModalContext";
-import { useContext } from "react";
 
 function App() {
   return (

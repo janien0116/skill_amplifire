@@ -15,7 +15,7 @@ const CustomButton = ({ course }) => {
 
   const handleAddtoCourseCart = () => {
     setLoading(true);
-    let url = `http://127.0.0.1:5000/api/students/${studentId}/courses`;
+    let url = `${process.env.REACT_APP_API_URL}/students/${studentId}/courses`;
 
     const requestOptions = {
       studentId: studentId,

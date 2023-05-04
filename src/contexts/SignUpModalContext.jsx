@@ -35,7 +35,7 @@ export const SignUpModalContextProvider = ({ children }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let url = `http://127.0.0.1:5000/api/signup`;
+    let url = `${process.env.REACT_APP_API_URL}/signup`;
 
     axios.post(url, {
       fullName: student.fullName,

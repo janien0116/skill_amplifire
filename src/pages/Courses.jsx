@@ -15,7 +15,7 @@ const Courses = () => {
 
     useEffect(() => {
         setIsLoading(true)
-        axios.get('http://127.0.0.1:5000/api')
+        axios.get(`${process.env.REACT_APP_API_URL}`)
             .then(response => {
                 setCourses(response.data);
                 setIsLoading(false);

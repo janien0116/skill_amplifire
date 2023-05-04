@@ -19,7 +19,7 @@ const Home = () => {
     const [featuredCourses, setFeaturedCourses] = useState([]);
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:5000/api')
+        axios.get(`${process.env.REACT_APP_API_URL}`)
             .then(response => {
                 const sortedCourses = response.data.sort((a, b) => b.averageRating - a.averageRating);
                 const featured = sortedCourses.slice(0, 6);

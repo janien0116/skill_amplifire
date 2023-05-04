@@ -20,7 +20,7 @@ const StudentNavbar = () => {
     const handleStudentLogout = async (e) => {
         e.preventDefault();
 
-        const url = "http://127.0.0.1:5000/api/students/logout";
+        const url = `${process.env.REACT_APP_API_URL}/students/logout`;
 
         const requestBody = {
             data: {

@@ -17,7 +17,7 @@ const InstructorClass = () => {
                 Authorization: `Bearer ${token}`,
             },
         };
-        axios.get(`http://127.0.0.1:5000/api/instructors/${instructorId}/students`, requestOptions)
+        axios.get(`${process.env.REACT_APP_API_URL}/instructors/${instructorId}/students`, requestOptions)
             .then(response => setShowStudents(response.data))
             .catch(error => console.error(error));
     }, []);

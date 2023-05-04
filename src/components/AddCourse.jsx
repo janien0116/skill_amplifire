@@ -67,7 +67,7 @@ const AddCourse = () => {
             },
         };
 
-        const url = `http://127.0.0.1:5000/api/instructors/${instructorId}`;
+        const url = `${process.env.REACT_APP_API_URL}/instructors/${instructorId}`;
 
         try {
             const response = await axios.post(url, formData, config);

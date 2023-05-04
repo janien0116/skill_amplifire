@@ -99,7 +99,7 @@ const InstructorAnalytics = () => {
     };
     const fetchCourses = async () => {
         try {
-            const response = await axios.get(`http://127.0.0.1:5000/api/instructors/${instructorId}/courses`, requestOptions);
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/instructors/${instructorId}/courses`, requestOptions);
             setCourses(response.data);
             setIsLoading(false);
         } catch (error) {
@@ -109,7 +109,7 @@ const InstructorAnalytics = () => {
 
     const fetchProjects = async () => {
         try {
-            const response = await axios.get(`http://127.0.0.1:5000/api/instructors/${instructorId}/outputs`, requestOptions);
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/instructors/${instructorId}/outputs`, requestOptions);
             setProjects(response.data);
             setIsLoading(false);
         } catch (error) {
@@ -119,7 +119,7 @@ const InstructorAnalytics = () => {
 
     const fetchEnrolledStudents = async () => {
         try {
-            const response = await axios.get(`http://127.0.0.1:5000/api/instructors/${instructorId}/enrolled`, requestOptions);
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/instructors/${instructorId}/enrolled`, requestOptions);
             const data = response.data;
 
             const labels = data.map(item => `${item.month}/${item.year}`);
@@ -150,7 +150,7 @@ const InstructorAnalytics = () => {
 
     const fetchRevenue = async () => {
         try {
-            const response = await axios.get(`http://127.0.0.1:5000/api/instructors/${instructorId}/revenue`, requestOptions);
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/instructors/${instructorId}/revenue`, requestOptions);
             const data = response.data[0];
 
             const labels = data.courses.map(item => item.courseTitle);
@@ -179,7 +179,7 @@ const InstructorAnalytics = () => {
     }
     const fetchTotalRatings = async () => {
         try {
-            const response = await axios.get(`http://127.0.0.1:5000/api/instructors/${instructorId}/ratings`, requestOptions);
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/instructors/${instructorId}/ratings`, requestOptions);
             const data = response.data;
 
             const labels = data.map(item => item.rating);
@@ -223,7 +223,7 @@ const InstructorAnalytics = () => {
     }
 
     const handleCourseDelete = () => {
-        let url = `http://127.0.0.1:5000/api/instructors/${instructorId}/course`;
+        let url = `${process.env.REACT_APP_API_URL}/instructors/${instructorId}/course`;
 
         const requestOptions = {
 

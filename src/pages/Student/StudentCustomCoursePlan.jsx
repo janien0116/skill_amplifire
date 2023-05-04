@@ -16,7 +16,7 @@ const StudentCustomCoursePlan = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        let url = `http://127.0.0.1:5000/api/students/${studentId}/courses`;
+        let url = `${process.env.REACT_APP_API_URL}/students/${studentId}/courses`;
 
         const config = {
             headers: {
@@ -39,7 +39,7 @@ const StudentCustomCoursePlan = () => {
             courses: course.courseTitle
         }));
 
-        let url = `http://127.0.0.1:5000/api/students/${studentId}`
+        let url = `${process.env.REACT_APP_API_URL}/students/${studentId}`
         const data = {
             curriculum: selectedCourses[0].curriculum,
             courseSet: courseSet,
