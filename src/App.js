@@ -1,5 +1,4 @@
 import Home from "./pages/Home";
-import 'bootstrap-icons/font/bootstrap-icons.css';
 import Footer from "./components/Footer";
 import Curriculum from "./pages/Curriculum";
 import Courses from "./pages/Courses";
