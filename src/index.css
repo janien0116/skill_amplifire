@@ -98,6 +98,12 @@ body {
   height: 80vh;
 }
 
+#email-notif {
+  height: max-content !important;
+  padding: 10px;
+  background-color: #fff !important;
+}
+
 #rating-modal {
   height: 200px;
 }
@@ -136,11 +142,11 @@ body {
   background-image: url(./assets/images/modal-bg.png);
   background-position: center;
   background-size: cover;
-  height: 80vh;
+  height: inherit;
 }
 
-#signup-modal {
-  height: max-content
+.signup-modal {
+  height: max-content;
 }
 
 #dialog {
