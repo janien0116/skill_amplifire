@@ -306,7 +306,7 @@ const InstructorAnalytics = () => {
                                             rows[totalRows].push(
                                                 <Col key={index}>
                                                     <Card className='instructor-course-card'>
-                                                        <Card.Img variant="top" fluid src={course.videoThumbnail ? `http://localhost:5000/${course.videoThumbnail}` : courseThumbnail} alt='Video Thumbnail' className='instructor-course-img' />
+                                                        <Card.Img variant="top" fluid src={course.videoThumbnail ? `${process.env.REACT_APP_API_URL}${course.videoThumbnail}` : courseThumbnail} alt='Video Thumbnail' className='instructor-course-img' />
                                                         <Card.Body>
                                                             <Card.Title>{course.title}</Card.Title>
                                                             <Card.Text>
@@ -334,7 +334,7 @@ const InstructorAnalytics = () => {
                                                 <Container className='d-flex justify-content-between align-items-center fs-6 bg-white rounded py-2 px-3' style={{ alignItems: 'center' }}>
                                                     <p className='m-0'>{project.courseTitle}</p>
                                                     <p className='m-0'>By: {project.studentName}</p>
-                                                    <p className='m-0'>Output: <a href={`http://localhost:5000/${project.downloadLink}`} download>Download Output</a></p>
+                                                    <p className='m-0'>Output: <a href={`${process.env.REACT_APP_API_URL}${project.downloadLink}`} download>Download Output</a></p>
                                                     <Button variant='success' className='px-4 py-2'>Grade</Button>
                                                 </Container>
                                             ))}

@@ -179,7 +179,7 @@ const Courses = () => {
                                 rows[totalRows].push(
                                     <Col key={index}>
                                         <Card className='home-course-card'>
-                                            <Card.Img variant="top" fluid src={course.videoThumbnail ? `http://localhost:5000/${course.videoThumbnail}` : courseThumbnail} alt='Video Thumbnail' className='course-img' />
+                                            <Card.Img variant="top" fluid src={course.videoThumbnail ? `${process.env.REACT_APP_API_URL}${course.videoThumbnail}` : courseThumbnail} alt='Video Thumbnail' className='course-img' />
                                             <Card.Body className='d-flex flex-column justify-content-end'>
                                                 <Card.Title className="course-title">{course.title}</Card.Title>
                                                 <Card.Text>
